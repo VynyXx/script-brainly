@@ -1,14 +1,22 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = str(input("Digite a URL: "))
-page = requests.get(url)
-soup = BeautifulSoup(page.content, 'html.parser')
+# url = str(input("Digite a URL: "))
+page = requests.get("https://brainly.com.br/tarefa/10786762")
+page.encoding = 'utf-8'
+soup = BeautifulSoup(page.text, 'html.parser')
 
-page0 = str(page.content)
-page1 = page0.find("answer-box-text")
-page2 = page0.find("next-answer-box")
+posts = soup.find_all(class_="sg-text sg-text--break-words brn-rich-content js-answer-content")
+text = str(posts)
 
-resultado = page0[page1:page2]
-
-print(resultado)
+print(text.replace("<div class=\"sg-text sg-text--break-words brn-rich-content js-answer-content\" data-test=\"answer-box-text\">", "")
+.replace("<p>", " ")
+.replace("</p>", " ")
+.replace("<strong>", " ")
+.replace("</strong>", " ")
+.replace("<em>", " ")
+.replace("</em>", " ")
+.replace("</div>", " ")
+.replace("<>", " ")
+.replace("</>", " ")
+.replace(",", " "))
