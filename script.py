@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-# url = str(input("Digite a URL: "))
-page = requests.get("https://brainly.com.br/tarefa/10786762")
+url = str(input("Digite a URL: "))
+page = requests.get(url)
 page.encoding = 'utf-8'
 soup = BeautifulSoup(page.text, 'html.parser')
 
