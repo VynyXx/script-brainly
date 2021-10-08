@@ -14,5 +14,7 @@ list = []
 for post in posts:
     list.append(post.text)
 
+i = 1
 for each in list:
-    print(each)
+    print("Resposta(%d): " % i, each)
+    i += 1
